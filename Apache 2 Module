@@ -1,0 +1,18 @@
+Apache 2 Module
+--- # APACHE2_MODULE EXAMPLE
+- hosts: aptserver
+ user: test
+ sudo: yes
+ connection: ssh
+ gather_facts: no
+ tasks:
+ - name: Disable the alias module in Apache2
+ apache2_module: state=present name=alias
+- hosts: appserver
+ vars:
+ author_name: Test user
+ vars_files:
+ - vars.yml
+ tasks:
+ - name: Install Lynx on App Servers
+ yum: pkg=lynx state=installed update_cache=true
